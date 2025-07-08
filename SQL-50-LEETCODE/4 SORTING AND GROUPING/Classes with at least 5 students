@@ -1,0 +1,9 @@
+select distinct c1.class
+from courses c1
+join (
+    select count(*) as student_count, class
+    from courses
+    group by class
+) c2
+on c1.class = c2.class
+where c2.student_count >= 5

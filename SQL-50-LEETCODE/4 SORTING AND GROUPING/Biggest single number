@@ -1,0 +1,9 @@
+select max(n.num) as num
+from mynumbers n
+join (
+    select count(*) num_count, num
+    from mynumbers
+    group by num
+    having num_count = 1
+) m
+on m.num = n.num
